@@ -229,6 +229,8 @@ public class LibrarySecurity {
 	public static void main(String[] args) throws SQLException{
 		LibrarySecurity ls = new LibrarySecurity();
 		
+		// Testing new user
+		ls.newUser("erika", "bourque");		
 	}
 	
 	
