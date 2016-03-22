@@ -5,6 +5,7 @@ import java.security.SecureRandom;
 import java.security.Security;
 import java.security.spec.InvalidKeySpecException;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigInteger;
 import java.sql.*;
@@ -73,8 +74,48 @@ public class LibrarySecurity {
 	
 	
 	//Prompts the user to input a username and password, and creates an account for that user.
-	public void newUser() throws SQLException{
+	public void newUser() throws SQLException, IOException{
+		BufferedReader input = null;
+		String username = "";
+		String password = "";
 		
+		try
+		{
+			input = new BufferedReader(new InputStreamReader(System.in));
+			
+			System.out.println("Creating a new user.");
+			
+			// Asking for the fields
+			System.out.print("Username: ");
+			username = input.readLine();
+			
+			if (username.isEmpty())
+			{
+				throw new IllegalArgumentException("newUser error - Username cannot be empty.");
+			}
+			
+			System.out.print("Password: ");
+			password = input.readLine();
+			
+			if (password.isEmpty())
+			{
+				throw new IllegalArgumentException("newUser error - Password cannot be empty.");
+			}
+			
+			// Giving the data to newUser method.
+			newUser(username, password);
+		}
+		catch (IOException ioe)
+		{
+			System.out.println(ioe);
+		}
+		finally
+		{
+			if (input != null)
+			{
+				input.close();
+			}			
+		}		
 	}
 	
 	//Takes a username and password returns true if they belong to a valid user
@@ -138,7 +179,48 @@ public class LibrarySecurity {
 	}
 	
 	//Prompts the user to input their login info, returns true if they are a valid user, false otherwise
-	public boolean login() throws SQLException{
+	public boolean login() throws SQLException, IOException{
+		BufferedReader input = null;
+		String username = "";
+		String password = "";
+		
+		try
+		{
+			input = new BufferedReader(new InputStreamReader(System.in));
+			
+			System.out.println("Logging in.");
+			
+			// Asking for the fields
+			System.out.print("Username: ");
+			username = input.readLine();
+			
+			if (username.isEmpty())
+			{
+				throw new IllegalArgumentException("login error - Username cannot be empty.");
+			}
+			
+			System.out.print("Password: ");
+			password = input.readLine();
+			
+			if (password.isEmpty())
+			{
+				throw new IllegalArgumentException("login error - Password cannot be empty.");
+			}
+			
+			// Giving the data to newUser method.
+			return login(username, password);
+		}
+		catch (IOException ioe)
+		{
+			System.out.println(ioe);
+		}
+		finally
+		{
+			if (input != null)
+			{
+				input.close();
+			}			
+		}		
 		return false;
 	}
 	

@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+// already fixed closing bufferedreader
 /**
  * This class represents a library's database.
  * 
@@ -282,8 +283,9 @@ public class LibraryDatabase {
 	 * information given through keyboard input.
 	 * 
 	 * @throws SQLException
+	 * @throws IOException 
 	 */
-	public void newPatron() throws SQLException
+	public void newPatron() throws SQLException, IOException
 	{
 		String fname;
 		String lname;
@@ -359,6 +361,10 @@ public class LibraryDatabase {
 			{
 				prepStat.close();
 			}
+			if (input != null)
+			{
+				input.close();
+			}
 		}		
 	}
 
@@ -367,8 +373,9 @@ public class LibraryDatabase {
 	 * information given through keyboard input.
 	 * 
 	 * @throws SQLException
+	 * @throws IOException 
 	 */
-	public void newBook() throws SQLException
+	public void newBook() throws SQLException, IOException
 	{
 		int isbn;
 		int genreID = 0;
@@ -591,6 +598,10 @@ public class LibraryDatabase {
 			if (prepStat != null)
 			{
 				prepStat.close();
+			}
+			if (input != null)
+			{
+				input.close();
 			}
 		}
 	}
