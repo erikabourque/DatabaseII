@@ -226,11 +226,11 @@ public class LibrarySecurity {
 	
 	
 	//Feel free to use a main method to test your code!
-	public static void main(String[] args) throws SQLException{
+	public static void main(String[] args) throws SQLException, IOException{
 		LibrarySecurity ls = new LibrarySecurity();
 		
-		// Testing new user
-		ls.newUser("erika", "bourque");		
+		// invalid login works
+		System.out.print(ls.login("bla", "bla"));		
 	}
 	
 	
